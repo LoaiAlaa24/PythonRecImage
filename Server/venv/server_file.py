@@ -1,10 +1,10 @@
 import  socket
 import struct
-def recvall(conn, length):
-    buf = b''
+def recvall(conn, length,buf):
+
     while len(buf) < length:
         print(len(buf))
-        data = conn.recv(length - len(buf))
+        data = conn.recv(262144)
         if not data:
             return data
         buf += data
@@ -18,7 +18,7 @@ def sending_and_reciveing():
     print('socket binded to port ')
     s.listen(5)#listening for connection
     print('socket listensing ... ')
-    i = 0 
+    i = 0 ;
     while True:
         i+=1
         print(i)
@@ -27,8 +27,9 @@ def sending_and_reciveing():
             print("\ngot connection from ", addr)
 
         print 'got image from', addr
+        buf=b""
         length=""
-        length = recvall(client, 262144)
+        length = recvall(client, 262144,buf)
         if not length:
             break
         print("--------------------------")
