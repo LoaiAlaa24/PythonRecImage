@@ -4,7 +4,7 @@ def recvall(conn, length,buf):
 
     while len(buf) < length:
         print(len(buf))
-        data = conn.recv(262144)
+        data = conn.recv(524288)
         if not data:
             return data
         buf += data
@@ -29,7 +29,7 @@ def sending_and_reciveing():
         print 'got image from', addr
         buf=b""
         length=""
-        length = recvall(client, 262144,buf)
+        length = recvall(client, 524288,buf)
         if not length:
             break
         print("--------------------------")
